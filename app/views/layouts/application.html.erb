@@ -9,39 +9,36 @@
 
 <body>
 
-	<div class="navbar navbar-static-top">
+	<div class="navbar navbar-fixed-top">
 	  <div class="navbar-inner">
-	    <a class="brand" href="<%= root_path %>"><h3>Noteworthy Moments</h3></a>
+	    <a class="brand" href="<%= root_path %>"><span>Noteworthy Moments</span></a>
 	   		  <ul class="nav">
                 <li 
                     <% if params[:controller] == "main" and params[:action] == "about" %> 
                     class="active"
                     <% end %>
                 >
-                    <a href="<%= about_path %>"><h5>About</h5></a>
+                    <a href="<%= about_path %>">About</a>
                 </li>
                 <li
                     <% if params[:controller] == "main" and params[:action] == "how_it_works" %> 
                     class="active"
                     <% end %>
                 >
-                    <a href="<%= how_it_works_path %>"><h5>How it Works</h5></a>
+                    <a href="<%= how_it_works_path %>">How it Works</a>
                 </li>
                 <li
                     <% if params[:controller] == "main" and params[:action] == "moments" %> 
                     class="active"
                     <% end %>
                 >
-                    <a href="<%= moments_path %>"><h5>Moments</h5></a>
+                    <a href="<%= moments_path %>">Moments</a>
                 </li>
-                <li style="float:right;"
-                  
-                >
-                    <a href="<%= moments_path %>"><h5>Sign In</h5></a>
-                </li>
-
 
             </ul>
+
+
+            <a class="btn btn-primary pull-right" href="/get_started">Sign In</a>
 	  </div>
 	</div>
 
