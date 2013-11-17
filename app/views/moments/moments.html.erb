@@ -1,0 +1,15 @@
+<div class="container" style="text-align:center;">
+
+<h1> My Moments </h1>
+
+<p> Coming Soon...</p>
+
+<h2><% @moments %></h2>
+
+<ul>
+    <% @moments.each do |moment| %>
+    <li><%= moment.title %>
+    <% end %>
+</ul>
+
+</div>

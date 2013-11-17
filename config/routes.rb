@@ -1,14 +1,15 @@
 SongMoments::Application.routes.draw do
 
 
-root "main#index"
+root "moments#index"
 
-get "about" => "main#about"
+get "about" => "moments#about"
 
-get "how_it_works" => "main#how_it_works"
+get "how_it_works" => "moments#how_it_works"
 
-get "moments" => "main#moments"
+get "moments" => "moments#moments"
 
+resources :moments
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
