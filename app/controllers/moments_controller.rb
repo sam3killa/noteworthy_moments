@@ -20,4 +20,10 @@ class MomentsController < ApplicationController
 
 	end
 
+	def show
+
+		@moment = Moment.find( params[:id])
+
+	end
+
 end

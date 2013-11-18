@@ -4,12 +4,48 @@
 
 <p> Coming Soon...</p>
 
-<h2><% @moments %></h2>
+<div class="moment">
 
-<ul>
+
     <% @moments.each do |moment| %>
-    <li><%= moment.title %>
+
+
+    <div class="title">
+
+ 	   <h1><%= moment.title %></h1>
+
+	</div>
+
+	<div class="image">
+
+  	 	<h2><%= moment.image %></h2>
+
+   </div>
+
+   <div class="blog">
+    
+	   <p><%= moment.blog %></p>
+
+   </div> 
+
+
+   <div class="song">
+
+ 	   <h3><%= moment.song %></h3>
+
+ 	</div>
+
+  <div class="show_details">
+
+    <a href="<%= moment_path( moment ) %>"><%= moment.title %></a>
+
+  </div>
+   	 
+    <br>
+    
     <% end %>
-</ul>
+
+
+</div>
 
 </div>
