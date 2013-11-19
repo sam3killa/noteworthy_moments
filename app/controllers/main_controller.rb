@@ -2,6 +2,8 @@ class MainController < ApplicationController
 
 	def index
 
+		@moments = Moment.all
+
 	end
 
 	def about
@@ -14,7 +16,14 @@ class MainController < ApplicationController
 
 	def moments
 
+		@moments = Moment.all
+
 	end
 
+	def show
+
+		@moment = Moment.find( params[:id])
+
+	end
 
 end
