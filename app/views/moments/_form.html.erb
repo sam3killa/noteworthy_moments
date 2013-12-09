@@ -1,0 +1,48 @@
+
+<% if @moments.errors.any? %>
+    <h2>There were errors saving your moment</h2>
+    <ul>
+      <% @moments.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+<% end %>
+
+
+<%= form_for @moments, :html => { :class => "formclass" } do |f| %>
+
+<div>
+	
+	<%= f.label :song, "Song:" %><br>
+	<%= f.text_field :song %>
+
+</div>
+
+<div>
+
+	<%= f.label :image, "Image:" %><br>
+	<%= f.text_field :image %>
+
+</div>
+
+<div>
+
+	<%= f.label :blog, "Blog Post:" %><br>
+	<%= f.text_field :blog %>
+
+</div>
+
+<div>
+
+	<%= f.label :title, "Title:", :class =>"label-class" %><br>
+	<%= f.text_field :title %>
+
+</div>
+
+<%= f.submit "Create Moment" %>
+
+
+
+<% end %>
+
+

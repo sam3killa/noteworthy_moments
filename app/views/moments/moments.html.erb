@@ -2,50 +2,52 @@
 
 <h1> My Moments </h1>
 
-<p> Coming Soon...</p>
-
-<div class="moment">
+<a class="btn btn-danger btn-large" href="<%= new_moment_path %>">Add Moment</a>
 
 
-    <% @moments.each do |moment| %>
+    <div class="row">
+
+      <ul class="thumbnails">
+
+        <% @moments.each do |moment| %>
+        <li class="span6" style=" padding:5px; border-radius:5px; margin-top:15px; text-align:center;">
+
+          <div class="title">
+
+         	   <h2><a href="<%= moment_path(moment)%>"><%= moment.title %></a></h2>
+
+          	</div>
+
+        	<div class="image">
+
+          	 	<h2><%= moment.image %></h2>
+
+           </div>
+
+          <div class="blog">
+            
+        	   <p><%= moment.blog %></p>
+
+           </div> 
 
 
-    <div class="title">
+          <div class="song">
 
- 	   <h1><%= moment.title %></h1>
+         	   <h3><%= moment.song %></h3>
 
-	</div>
+         	</div>
+           	 
+            <br>
 
-	<div class="image">
+             <a href="<%= edit_moment_path( moment ) %>">Edit</a>
 
-  	 	<h2><%= moment.image %></h2>
+          <% end %>
 
-   </div>
+        </li>
 
-   <div class="blog">
-    
-	   <p><%= moment.blog %></p>
+        </ul>
 
-   </div> 
-
-
-   <div class="song">
-
- 	   <h3><%= moment.song %></h3>
-
- 	</div>
-
-  <div class="show_details">
-
-    <a href="<%= moment_path( moment ) %>"><%= moment.title %></a>
+    </div>
 
   </div>
-   	 
-    <br>
-    
-    <% end %>
 
-
-</div>
-
-</div>

@@ -12,6 +12,8 @@
 
 <body>
 
+<%= bootstrap_flash %>
+
 	<div class="navbar navbar-fixed-top">
 	  <div class="navbar-inner">
 	    <a class="brand" href="<%= root_path %>"><span>Noteworthy Moments</span></a>
@@ -40,11 +42,21 @@
 
             </ul>
 
+          <div style="float:right;">
 
-            <a class="btn btn-danger pull-right" href="#">Sign In</a>
+              <% if user_signed_in? %>
+                <%= current_user.email %>
+                <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+              <% else %>
+
+                <a class="btn btn-danger" href="<%= new_user_session_path %>">Log In</a> |
+                <a class="btn btn-danger" href="<%= new_user_registration_path %>">Sign Up</a>
+
+              <% end %>
+
+          </div>
 	  </div>
 	</div>
-
 
 		<%= yield %>
 		

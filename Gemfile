@@ -53,7 +53,16 @@ gem "twitter-bootstrap-rails"
 gem 'rails_12factor', :group => :production
 gem 'pg', :group => :production
 
+# Devise
+gem 'devise'
 
+# Omniauth-Facebook Gems
+
+gem 'omniauth'
+gem 'omniauth-facebook', '1.4.0'
+
+
+gem 'soundcloud'
 
 
 
