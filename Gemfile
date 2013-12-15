@@ -57,12 +57,14 @@ gem 'pg', :group => :production
 gem 'devise'
 
 # Omniauth-Facebook Gems
-
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 
-
+# Soundcloud
 gem 'soundcloud'
 
+# Paperclip
+gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 
-
+# Carrier Wave
+gem 'carrierwave'

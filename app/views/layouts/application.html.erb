@@ -39,11 +39,19 @@
                 >
                     <a href="<%= moments_path %>">Moments</a>
                 </li>
+                <li
+                    <% if params[:controller] == "main" and params[:action] == "add_moment" %> 
+                    class="active"
+                    <% end %>
+                >
+                    <a href="<%= new_moment_path %>">Add Moment</a>
+                </li>
 
             </ul>
 
           <div style="float:right;">
-
+            <ul>
+              <li>
               <% if user_signed_in? %>
                 <%= current_user.email %>
                 <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
@@ -53,7 +61,8 @@
                 <a class="btn btn-danger" href="<%= new_user_registration_path %>">Sign Up</a>
 
               <% end %>
-
+              <li>
+            </ul>
           </div>
 	  </div>
 	</div>

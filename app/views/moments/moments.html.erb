@@ -1,53 +1,50 @@
 <div class="container" style="text-align:center;">
 
-<h1> My Moments </h1>
+  <h1> All Moments </h1>
 
-<a class="btn btn-danger btn-large" href="<%= new_moment_path %>">Add Moment</a>
-
-
-    <div class="row">
-
-      <ul class="thumbnails">
-
-        <% @moments.each do |moment| %>
-        <li class="span6" style=" padding:5px; border-radius:5px; margin-top:15px; text-align:center;">
-
-          <div class="title">
-
-         	   <h2><a href="<%= moment_path(moment)%>"><%= moment.title %></a></h2>
-
-          	</div>
-
-        	<div class="image">
-
-          	 	<h2><%= moment.image %></h2>
-
-           </div>
-
-          <div class="blog">
-            
-        	   <p><%= moment.blog %></p>
-
-           </div> 
+  <a class="btn btn-danger btn-large" href="<%= new_moment_path %>">Add Moment</a>
 
 
-          <div class="song">
+        <ul class="thumbnails">
 
-         	   <h3><%= moment.song %></h3>
+          <% @moments.each do |moment| %>
 
-         	</div>
-           	 
-            <br>
 
-             <a href="<%= edit_moment_path( moment ) %>">Edit</a>
+            <li class="span12">
 
-          <% end %>
+              <div class="title">
+             	   <h2><a href="<%= moment_path(moment)%>"><%= moment.title %></a></h2>
+              </div>
 
-        </li>
+               <div class ="post">
+                 <h4>
+                    posted by <a href = "<%= user_path( moment.user ) %>"><%= moment.user.email %></a> <%= time_ago_in_words( moment.created_at ) %> ago
+                </h4>
+               </div>
 
-        </ul>
+              <% if moment.image.present? %>
+              <div>
+                  <img src="<%= moment.image.url %>"/>
+              </div>
+              <% end %>
 
-    </div>
+              <div class="blog">
+                  <h4><%= moment.blog %></h4>
+              </div> 
 
-  </div>
+              <div class="song">
+                 <h3><%= moment.song %></h3>
+              </div>
+                 <% if moment.song_url.present? %>
+                    <%==  @client.get('/oembed', :url => moment.song_url)['html'] %>
+                 <% else %>
+                    <%= moment.song_url %>
+                 <% end %>
+              
+              <h4><a href="<%= edit_moment_path( moment ) %>" class ="btn btn-inverse">Edit</a></h4>
+
+              <% end %>
+            </li>
+          </ul>
+</div>
 

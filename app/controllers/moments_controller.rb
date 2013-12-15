@@ -1,7 +1,7 @@
 class MomentsController < ApplicationController
 
 
- before_action :authenticate_user!, :only => [:new, :create, :moments]
+ before_action :authenticate_user!, :only => [:new, :create, :moments, :image]
 
 
 	def index
@@ -22,32 +22,41 @@ class MomentsController < ApplicationController
 
 		@moments = Moment.all.order("created_at DESC")
 
+		@client = Soundcloud.new(:client_id => '8e38e03320f1b0cdde7d69fe832142c9')
+
+		# get a tracks oembed data
+		
 	end
 
 	def show
 
 		@moment = Moment.find(params[:id])
+		@comment = Comment.new
+		@client = Soundcloud.new(:client_id => '8e38e03320f1b0cdde7d69fe832142c9')
+
 
 	end
 
 
 	def new
 
-		@moments = Moment.new
+		@moment = Moment.new
 
 	end
 
 	def create
 
-		@moments = Moment.new(safe_moment_params)
+		@moment = Moment.new(safe_moment_params)
+
+		@moment.user = current_user
 		
-		if @moments.save
+		if @moment.save
 
 			redirect_to moments_path
 
 		else 
 
-			render 'new'
+			render :new
 
 		end
 
@@ -57,7 +66,6 @@ class MomentsController < ApplicationController
 	def edit									# Edits a shirt
 
 		@moments = Moment.find(params[:id])
-
 
 	end
 
@@ -78,7 +86,7 @@ class MomentsController < ApplicationController
 
 		@moments.destroy
 
-		redirect_to root_path
+		redirect_to moments_path
 
 	end
 

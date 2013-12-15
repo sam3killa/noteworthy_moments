@@ -1,65 +1,65 @@
 <div class="container" style="text-align:center;">
 
-<h1> The Details! </h1>
-
-<br>
-
-    <div class="title">
-
- 	   <h1><%= @moment.title %></h1>
-
-	</div>
-
-	<div class="image">
-
-  	 	<h2><%= @moment.image %></h2>
-
-   </div>
-
-   <div class="blog">
-    
-	   <p><%= @moment.blog %></p>
-
-   </div> 
-
-
-   <div class="song">
-
- 	   <h3><%= @moment.song %></h3>
-
- 	</div>
-
-  <div class="edit">
-
-   <a href="<%= edit_moment_path( @moment ) %>">Edit</a>
-
+  <div class="title">
+   	  <h1><%= @moment.title %></h1>
   </div>
 
-<!-- Make it redirect to moments tab -->
+  <% if @moment.image.present? %>
+        <div>
+            <img src="<%= @moment.image.url %>"/>
+        </div>
+  <% end %>
+    <div class="blog">
+      <h3><%= @moment.blog %></h3>
+    </div> 
 
-<%= button_to "Delete Moment", moment_path(@moment),  :method => :delete %>
+    <div class="song">
+      <h3><%= @moment.song %></h3>
+    </div>
+
+    <% if @moment.song_url.present? %>
+          <%==  @client.get('/oembed', :url => @moment.song_url)['html'] %>
+    <% else %>
+          <%= @moment.song_url %>
+    <% end %>
+
+    <div class="edit">
+      <h4><a href="<%= edit_moment_path( @moment ) %>" class ="btn btn-inverse">Edit</a></h4>
+    </div>
+
+    <div class ="post">
+       <h4>
+         posted by <a href = "<%= user_path( @moment.user ) %>"><%= @moment.user.email %></a><%= time_ago_in_words( @moment.created_at ) %> ago
+       </h4>
+    </div>
+
+  <br>
+
+  <%= button_to "Delete Moment", moment_path(@moment),  :method => :delete ,class: "btn btn-danger btn-medium"%>
 
 
+  <!-- Make it redirect to moments tab -->
 
-<!-- Button to trigger modal -->
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+  <h1>Comments</h1>
+
+  <ul>
+    <% @moment.comments.each do |comment| %>
+      <li>
+          <h3><%= comment.text %></h3>  
+          <p>comment posted by <a href = "<%= user_path( comment.user ) %>"><%= comment.user.email %></a> <%= time_ago_in_words( comment.created_at ) %> ago</p>
+      </li>
  
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
-</div>
+    <% end %>
+  </ul>
 
+  <%= form_for [@moment, @comment] do |f| %>
+  <%= f.text_area :text, :placeholder => "Add a comment...", :rows => 8, :cols => 40 %>
 
+  <br>
+
+  <%= f.submit "Post Comment" %>
+  <% end %>
 
 </div>
+
 

@@ -1,0 +1,51 @@
+<div class="container" style="text-align:center;">
+
+<h1><%= @user.email %></h1>
+
+
+	<ul class="thumbnails">
+		<% @user.moments.each do |moment| %>
+			<li class="span12">
+			    <h1><a href="<%= moment_path(moment)%>"><%= moment.title %></a></h1>
+
+     		  	<% if moment.image.present? %>
+       				<div>
+       				    <img src="<%= moment.image.url %>"/>
+     			    </div>
+  				<% end %>	
+
+    			<h4><%=  moment.blog %></h4>
+
+     			<h3><%= moment.song %></h3>
+
+     			 <% if moment.song_url.present? %>
+                    <%==  @client.get('/oembed', :url => moment.song_url)['html'] %>
+                 <% else %>
+                    <%= moment.song_url %>
+                 <% end %>
+
+			    <p>
+			        posted by <a href="<%= user_path( moment.user )%>"><%= moment.user.email %></a> <%= time_ago_in_words( moment.created_at ) %> ago
+			    </p>
+			</li>
+		<% end %>   
+	</ul>
+
+</div>
+
+
+<div class="container" style="text-align:center;">
+
+  <h1>Comments</h1>
+ 
+	<ul>
+		<% @user.comments.each do |comment| %>
+			<li>
+				<p><%= link_to comment.moment.title, moment_path( comment.moment ) %> </p>
+			    <p>comment posted by <%= link_to comment.user.email, user_path( comment.user ) %> <%= time_ago_in_words( comment.created_at ) %> ago</p>
+			    <p><%= comment.text %></p>
+			</li>
+		<% end %>
+	</ul>
+
+</div>
