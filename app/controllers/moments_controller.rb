@@ -65,26 +65,35 @@ class MomentsController < ApplicationController
 
 	def edit									# Edits a shirt
 
-		@moments = Moment.find(params[:id])
+		@moment = Moment.find(params[:id])
 
 	end
 
 
 	def update
 
-		@moments = Moment.find(params[:id])
+		@moment = Moment.find(params[:id])
 
-		@moments.update(safe_moment_params)    # Saves the object so you don't have to call @shirt.save
+		@moment.update(safe_moment_params)    # Saves the object so you don't have to call @shirt.save
 
-		redirect_to moments_path(@moments)
+		redirect_to moments_path(@moment)
 
 	end
 
 	def destroy
 
-		@moments = Moment.find(params[:id])	# Destroys a shirt
+		@moment = Moment.find(params[:id])	# Destroys a shirt
 
-		@moments.destroy
+		@comments = @moment.comments.all
+
+		@comments.each do |comment|
+
+			comment.destroy
+		end
+
+		@moment.destroy
+
+		# Get all the comments for that specific moment and destroy them all
 
 		redirect_to moments_path
 

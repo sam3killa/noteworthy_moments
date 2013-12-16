@@ -29,13 +29,13 @@
 
     <div class ="post">
        <h4>
-         posted by <a href = "<%= user_path( @moment.user ) %>"><%= @moment.user.email %></a><%= time_ago_in_words( @moment.created_at ) %> ago
+         <p>posted by <a href = "<%= user_path( @moment.user ) %>"><%= @moment.user.email %></a><%= time_ago_in_words( @moment.created_at ) %> ago</p>
        </h4>
     </div>
 
   <br>
 
-  <%= button_to "Delete Moment", moment_path(@moment),  :method => :delete ,class: "btn btn-danger btn-medium"%>
+  <%= button_to "Delete Moment", moment_path(@moment), :method => :delete , class: "btn btn-danger btn-medium"%>
 
 
   <!-- Make it redirect to moments tab -->
@@ -48,6 +48,8 @@
           <h3><%= comment.text %></h3>  
           <p>comment posted by <a href = "<%= user_path( comment.user ) %>"><%= comment.user.email %></a> <%= time_ago_in_words( comment.created_at ) %> ago</p>
       </li>
+
+       <%= button_to "Delete Moment", moment_path(@moment), :method => :delete , class: "btn btn-danger btn-medium"%>
  
     <% end %>
   </ul>
@@ -57,7 +59,8 @@
 
   <br>
 
-  <%= f.submit "Post Comment" %>
+  <%= f.submit "Post Comment", :class =>"btn btn-danger"  %>
+
   <% end %>
 
 </div>
