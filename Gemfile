@@ -68,3 +68,6 @@ gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 
 # Carrier Wave
 gem 'carrierwave'
+
+# Fog
+
