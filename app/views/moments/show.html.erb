@@ -49,7 +49,6 @@
           <p>comment posted by <a href = "<%= user_path( comment.user ) %>"><%= comment.user.email %></a> <%= time_ago_in_words( comment.created_at ) %> ago</p>
       </li>
 
-       <%= button_to "Delete Moment", moment_path(@moment), :method => :delete , class: "btn btn-danger btn-medium"%>
  
     <% end %>
   </ul>
