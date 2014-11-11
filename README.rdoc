@@ -1,26 +1,8 @@
-== README
+== Noteworthy Moments
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An app where people can post their favorite moments and share with friends and family.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
+http://protected-brook-9238.herokuapp.com/
 * ...
 
 
