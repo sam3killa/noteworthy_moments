@@ -3,7 +3,6 @@
 An app where people can post their favorite moments and share with friends and family.
 
 http://protected-brook-9238.herokuapp.com/
-* ...
 
 
 Please feel free to use a different markup language if you do not plan to run
